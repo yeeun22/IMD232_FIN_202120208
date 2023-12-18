@@ -3,7 +3,7 @@ const fixedWidth = 210;
 const fixedHeight = 297;
 const aspectRatio = fixedWidth / fixedHeight;
 //캔버스 너비 / 매터세계의 너비
-let ratio; //
+let ratio;
 
 //기본 생성주기
 let defaultTextSpawnRate = 0.03;
@@ -11,9 +11,6 @@ let defaultFireSpawnRate = 0.5;
 
 // 시간이 흐를수록 증가할 변수
 let timePassed = 0;
-
-// 음성인식 기능 위한 변수
-let voiceRecognitionActivated = false;
 
 const {
   Engine,
@@ -49,13 +46,13 @@ function preload() {
 
 // 음성인식 활성화 함수
 function activateVoiceRecognition() {
-  voiceRecognitionActivated = true;
+  Activated = true;
   timePassed = 0; // 음성인식이 활성화된 순간부터의 경과 시간 초기화
 }
 
 // 음성인식 비활성화 함수
 function deactivateVoiceRecognition() {
-  voiceRecognitionActivated = false;
+  Activated = false;
 }
 
 // 불
@@ -222,11 +219,11 @@ function draw() {
   timePassed++;
 
   // 생성 주기 감소 (기본 + h키 누르면 다시 살아남)
-  let textSpawnRate = voiceRecognitionActivated
+  let textSpawnRate = Activated
     ? map(timePassed, 0, 600, 0.08, 0.01) // 인식(또는 처음)후 600프레임 동안 주기 감소
     : defaultTextSpawnRate;
 
-  let fireSpawnRate = voiceRecognitionActivated
+  let fireSpawnRate = Activated
     ? map(timePassed, 0, 600, 0.5, 0.1) // 인식(또는 처음)후 600프레임 동안 주기 감소
     : defaultFireSpawnRate;
 
@@ -260,7 +257,7 @@ function draw() {
   });
 }
 
-// 예시로 'H' 키를 누르면 음성인식이 활성화되고 'S' 키를 누르면 비활성화되도록 설정
+//  'H' ,'ㅎ' 키를 누르면 음성인식이 활성화되도록
 function keyPressed() {
   if (key === 'H' || key === 'h' || key === 'ㅎ') {
     activateVoiceRecognition();
