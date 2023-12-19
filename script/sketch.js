@@ -1,3 +1,5 @@
+// matter.js 응용 및 수정
+
 let canvasContainer = document.querySelector('#canvas');
 const fixedWidth = 210;
 const fixedHeight = 297;
@@ -44,6 +46,7 @@ function preload() {
   bgImage = loadImage('./png/graphic.png');
 }
 
+//chat GPT 도움.. 음성인식 대신 키보드로 활성화시킴
 // 음성인식 활성화 함수
 function activateVoiceRecognition() {
   Activated = true;
